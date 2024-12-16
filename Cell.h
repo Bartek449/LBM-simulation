@@ -3,7 +3,6 @@
 #include <array>
 #include <random>
 
-
 using namespace std;
 
 constexpr array<double, 4> EMPTY = { 0.0,0.0,0.0,0.0 };
