@@ -29,7 +29,7 @@ array < double,4> Cell::calculate_fun_ex()
     array <double, 4> f_ex;
     double f_eq = calculate_fun_eq();
     for (int i = 0; i < 4; ++i) {
-        f_ex[i] = fun_in[i] + (1.0 / RELAVATION_TIME) * (f_eq - fun_in[i]);
+        f_ex[i] = fun_in[i] + (1.0 / RELAXATION_TIME) * (f_eq - fun_in[i]);
      }
 
      return f_ex;

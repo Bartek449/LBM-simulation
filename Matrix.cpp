@@ -19,17 +19,13 @@ Cell& Matrix::get_element(int i, int j) {
 }
 
 void Matrix::prepare_environment() {
-	mt19937 rng(random_device{}());
-	uniform_int_distribution<int> dist(0, 100);
-	uniform_int_distribution<int> dir(0, 3);
-
 	for (size_t i = 0; i < rows; i++) {
 		for (size_t j = 0; j < columns; j++) {
 			Cell& currentCell = element[i][j];
 			if (i == 0 || i == rows - 1 || j == 0 || j == columns - 1 || (j == columns / 3 && (i < rows / 2 - 3 || i > rows / 2 + 3))) currentCell.set_fun_in(WALL);
 			if (i > 0 && i < rows - 1 && j > 0 && j < columns / 3)
 			{
-				if (dist(rng) < 80) currentCell.set_direct_fun_in(dir(rng), 1);
+				currentCell.set_fun_in(STARTING_STATE);
 			}
 
 		}
