@@ -11,14 +11,14 @@ constexpr double RELAVATION_TIME = 0.75;
 
 class Cell {
 private:
-    array <double, 4> info;
+    array <double, 4> fun_in;
 
 public:
     Cell();
     Cell(array<double,4>);
 
-    void set_info(array<double,4>);
-    const array<double,4>& get_info() const;
+    void set_fun_in(array<double,4>);
+    const array<double,4>& get_fun_in() const;
     
     double calculate_density();
     double calculate_fun_eq();
