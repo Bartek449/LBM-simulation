@@ -3,11 +3,11 @@
 #include <array>
 #include <random>
 
+using namespace std;
+
 constexpr array<double, 4> EMPTY = { 0.0,0.0,0.0,0.0 };
 constexpr array<double, 4> WALL = { -1.0,-1.0,-1.0,-1.0 };
 constexpr double RELAVATION_TIME = 0.75;
-
-using namespace std;
 
 class Cell {
 private:
