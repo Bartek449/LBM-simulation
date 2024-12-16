@@ -1,22 +1,26 @@
 #pragma once
 #include<iostream>
-#include <vector>
+#include <array>
 #include <random>
 
-#define EMPTY vector<int>{0,0,0,0}
-#define WALL vector<int>{-1,-1,-1,-1}
+constexpr array<double, 4> EMPTY = { 0.0,0.0,0.0,0.0 };
+constexpr array<double, 4> WALL = { -1.0,-1.0,-1.0,-1.0 };
+constexpr double RELAVATION_TIME = 0.75;
 
 using namespace std;
 
 class Cell {
 private:
-    vector <int> info;
+    array <double, 4> info;
+
 public:
     Cell();
-    Cell(vector<int>);
+    Cell(array<double,4>);
 
-    void set_info(vector<int>);
-    void set_direct_info(int, int);
-    const vector<int>& get_info() const;
-
+    void set_info(array<double,4>);
+    const array<double,4>& get_info() const;
+    
+    double calculate_density();
+    double calculate_fun_eq();
+    array < double, 4> calculate_fun_exit();
 };

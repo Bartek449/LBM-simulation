@@ -2,19 +2,31 @@
 
 Cell::Cell() : info(EMPTY) {}
 
-Cell::Cell(vector<int> i) {
-	if (info.size() != 4) throw invalid_argument("The info vector must have exactly 4 elements.");
-	info = i;
+Cell::Cell(array<double,4> i) {info = i;}
+
+void Cell::set_info(array<double,4> i) {info = i; }
+
+const array<double,4>& Cell::get_info() const { return info; }
+
+double Cell::calculate_density()
+{
+    double p = 0.0;
+    for (const auto& val : info)
+    {
+        p += val;
+    }
+    return p;
 }
 
-void Cell::set_info(vector<int> i) {
-	if (info.size() != 4)  throw invalid_argument("The info vector must have exactly 4 elements.");
-    info = i; 
-}
+double Cell::calculate_fun_eq() { return calculate_density() / info.size(); }
 
-void Cell::set_direct_info(int i, int num) { 
-	if (i < 0 || i >= info.size()) throw out_of_range("Index out of range in set_direct_info.");
-	info[i] = num; 
-}
+array < double,4> Cell::calculate_fun_exit() 
+{ 
+    array <double, 4> f_ex;
+    double f_eq = calculate_fun_eq();
+    for (int i = 0; i < 4; ++i) {
+        f_ex[i] = info[i] + (1.0 / RELAVATION_TIME) * (f_eq - info[i]); 
+     }
 
-const vector<int>& Cell::get_info() const { return info; }
+        return f_ex;
+}
