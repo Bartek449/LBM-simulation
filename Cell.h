@@ -18,9 +18,10 @@ public:
     Cell(array<double,4>);
 
     void set_fun_in(array<double,4>);
+    void set_direct_fun_in(int, double);
     const array<double,4>& get_fun_in() const;
     
     double calculate_density();
     double calculate_fun_eq();
-    array < double, 4> calculate_fun_exit();
+    array < double, 4> calculate_fun_ex();
 };
