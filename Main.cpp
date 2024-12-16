@@ -104,8 +104,6 @@ int main() {
 
     GLuint shaderProgram = glCreateProgram();
 
-    
-
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
     glCompileShader(vertexShader);
@@ -145,8 +143,6 @@ int main() {
             logic_clock.restart();
             updateTextureData(simulation, pixelData, rows, columns);
 
-           
-            
            simulation.streaming();
            simulation.collision();
 
