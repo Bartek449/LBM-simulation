@@ -13,8 +13,10 @@ void Simulation::collision() {
 
     for (size_t i = 0; i < rows; i++) {
         for (size_t j = 0; j < columns; j++) {
-            const array<double,4>& info = s.get_element(i, j).get_fun_in();
+            const array<double,4>& fun_in = s.get_element(i, j).get_fun(FUN_IN);
             Cell& future_cell = next_matrix.get_element(i, j);
+
+            
 
            
 
@@ -32,9 +34,9 @@ void Simulation::streaming() {
 
     for (size_t i = 0; i < rows; i++) {
         for (size_t j = 0; j < columns; j++) {
-            if (s.get_element(i, j).get_fun_in() != WALL) {
+            if (s.get_element(i, j).get_fun(FUN_IN) != WALL) {
                 for (int d = 0; d < 4; d++) {
-                    next_matrix.get_element(i, j).set_direct_fun_in(d, 0);
+                    next_matrix.get_element(i, j).set_direct_fun(FUN_IN,d, 0);
                 }
             }
         }
@@ -43,7 +45,7 @@ void Simulation::streaming() {
     for (size_t i = 1; i < rows - 1; i++) {
         for (size_t j = 1; j < columns - 1; j++) {
             Cell& current_cell = s.get_element(i, j);
-            array<double, 4> info = current_cell.get_fun_in();
+            array<double, 4> info = current_cell.get_fun(FUN_IN);
 
             /*if (info[0] == 1) {
                 Cell& right_cell = s.get_element(i, j + 1);

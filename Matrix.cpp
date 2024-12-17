@@ -22,10 +22,10 @@ void Matrix::prepare_environment() {
 	for (size_t i = 0; i < rows; i++) {
 		for (size_t j = 0; j < columns; j++) {
 			Cell& currentCell = element[i][j];
-			if (i == 0 || i == rows - 1 || j == 0 || j == columns - 1 || (j == columns / 3 && (i < rows / 2 - 3 || i > rows / 2 + 3))) currentCell.set_fun_in(WALL);
+			if (i == 0 || i == rows - 1 || j == 0 || j == columns - 1 || (j == columns / 3 && (i < rows / 2 - 3 || i > rows / 2 + 3))) currentCell.set_fun(FUN_IN,WALL);
 			if (i > 0 && i < rows - 1 && j > 0 && j < columns / 3)
 			{
-				currentCell.set_fun_in(STARTING_STATE);
+				currentCell.set_fun(FUN_IN,STARTING_STATE);
 			}
 
 		}
