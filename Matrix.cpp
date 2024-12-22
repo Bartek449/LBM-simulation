@@ -1,7 +1,5 @@
 #include "Matrix.h"
 
-Matrix::Matrix() : rows(0), columns(0), element() {}
-
 Matrix::Matrix(int rows, int columns) : rows(rows), columns(columns), element(rows, vector<Cell>(columns)) {
 	if (rows <= 0 || columns <= 0) {
 		throw invalid_argument("Matrix dimensions must be greater than zero.");

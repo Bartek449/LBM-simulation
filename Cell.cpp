@@ -2,7 +2,9 @@
 
 Cell::Cell() : fun_in(EMPTY), fun_ex(EMPTY), fun_eq(EMPTY), density(0), weight(0.25) {}
 
-Cell::Cell(array<double, 4> i) : fun_in(i), fun_ex(EMPTY), fun_eq(EMPTY), density(0), weight(0.25) {}
+Cell::Cell(array<double, 4> i) : fun_in(i), fun_ex(EMPTY), fun_eq(EMPTY), density(0), weight(0.25) {
+    calculate_density();
+}
 
 void Cell::set_fun(FunType f, array<double,4> i) {
     if(f == FUN_IN) fun_in = i;
@@ -22,32 +24,29 @@ const array<double,4>& Cell::get_fun(FunType f) const {
     else if (f == FUN_EQ) return fun_eq;;
 }
 
-double Cell::get_density() { return density;}
-
-double Cell::calculate_density()
+void Cell::calculate_density()
 {
-    density = 0.0;
+    density = 0;
     for (const auto& val : fun_in)
     {
         density += val;
     }
-    return density;
+
 }
 
-array<double,4> Cell::calculate_fun_eq() { 
-    array <double, 4> f_eq;
+double Cell::get_density() { return density; }
+
+
+void Cell::calculate_fun_eq() { 
     for (int i = 0; i < 4; ++i) {
-        f_eq[i] =density * weight;
-    }
-    return f_eq; 
+        fun_eq[i] = density * weight;
+    } 
 }
 
-array < double,4> Cell::calculate_fun_ex() 
+void Cell::calculate_fun_ex() 
 { 
-    array <double, 4> f_ex;
-    array <double, 4> f_eq = calculate_fun_eq();
+    calculate_fun_eq();
     for (int i = 0; i < 4; ++i) {
-        f_ex[i] = fun_in[i] + (1.0 / RELAXATION_TIME) * (f_eq[i] - fun_in[i]);
+        fun_ex[i] = fun_in[i] + (1.0 / RELAXATION_TIME) * (fun_eq[i] - fun_in[i]);
      }
-     return f_ex;
 }

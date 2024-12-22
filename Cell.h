@@ -27,8 +27,9 @@ public:
     void set_fun(FunType, array<double,4>);
     void set_direct_fun(FunType, int, double);
     const array<double,4>& get_fun(FunType) const;
+    double get_density();
 
-    double calculate_density();
-    array<double, 4> calculate_fun_eq();
-    array < double, 4> calculate_fun_ex();
+    void calculate_density();
+    void calculate_fun_eq();
+    void calculate_fun_ex();
 };
