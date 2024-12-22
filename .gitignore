@@ -1,0 +1,23 @@
+# Ignorowanie folderów generowanych przez IDE
+.vs/
+Debug/
+Release/
+
+# Ignorowanie plików projektów Visual Studio
+*.vcxproj
+*.vcxproj.filters
+*.sln
+*.user
+
+# Ignorowanie folderów zależności (np. SFML, GLEW)
+SFML-2.6.0/
+glew-2.2.0/
+
+# Ignorowanie plików kompilacji
+*.obj
+*.pdb
+*.log
+
+# Ignorowanie plików tymczasowych systemu
+Thumbs.db
+*.DS_Store
