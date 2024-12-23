@@ -26,6 +26,7 @@ public:
 
     void set_fun(FunType, array<double,4>);
     void set_direct_fun(FunType, int, double);
+
     const array<double,4>& get_fun(FunType) const;
     double get_density();
 

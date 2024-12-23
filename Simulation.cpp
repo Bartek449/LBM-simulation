@@ -4,29 +4,6 @@ Simulation::Simulation(int rows, int columns) : s(rows, columns) {}
 
 Matrix& Simulation::get_matrix() { return s; }
 
-void Simulation::collision() {
-    Matrix next_matrix = s;
-    int rows = s.get_rows_num();
-    int columns = s.get_columns_num();
-    vector<int> left_right{ 1, 0, 1, 0 };
-    vector<int> up_down{ 0, 1, 0, 1 };
-
-    for (size_t i = 0; i < rows; i++) {
-        for (size_t j = 0; j < columns; j++) {
-            const array<double,4>& fun_in = s.get_element(i, j).get_fun(FUN_IN);
-            Cell& future_cell = next_matrix.get_element(i, j);
-
-            
-
-           
-
-        }
-    }
-
-    s = next_matrix;
-}
-
-
 void Simulation::streaming() {
     Matrix next_matrix = s;
     int rows = s.get_rows_num();
@@ -86,7 +63,6 @@ void Simulation::streaming() {
             }
         }
     }
-
 
     s = next_matrix;
 }

@@ -26,7 +26,7 @@ const array<double,4>& Cell::get_fun(FunType f) const {
 
 void Cell::calculate_density()
 {
-    density = 0;
+    density = 0.0;
     for (const auto& val : fun_in)
     {
         density += val;

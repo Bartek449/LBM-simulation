@@ -33,13 +33,13 @@ const char* fragmentShaderSource = R"(
         }
     )";
 
-void checkShaderCompilation(GLuint shader, const std::string& shaderType) {
+void checkShaderCompilation(GLuint shader, const string& shaderType) {
     GLint success;
     glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
     if (!success) {
         char infoLog[512];
         glGetShaderInfoLog(shader, 512, NULL, infoLog);
-        throw std::runtime_error(shaderType + " Shader Compilation Failed: " + std::string(infoLog));
+        throw runtime_error(shaderType + " Shader Compilation Failed: " + string(infoLog));
     }
 }
 void checkProgramLinking(GLuint program) {
@@ -48,28 +48,21 @@ void checkProgramLinking(GLuint program) {
     if (!success) {
         char infoLog[512];
         glGetProgramInfoLog(program, 512, NULL, infoLog);
-        throw std::runtime_error("Shader Program Linking Failed: " + std::string(infoLog));
+        throw runtime_error("Shader Program Linking Failed: " + string(infoLog));
     }
 }
 
 void updateTextureData(Simulation& simulation, vector<float>& pixelData, int rows, int columns) {
-    int alive = 0;
     for (size_t i = 0; i < rows; ++i) {
         for (size_t j = 0; j < columns; ++j) {
             Cell cell = simulation.get_matrix().get_element(i, j);
             float color;
-            if (cell.get_fun(FUN_IN) == WALL) {
-                color = -1.0f; 
-            }
-            else {
-                color = 1-cell.get_density();
-                if (cell.get_density() > 0.0f) alive++;
-            }
-
+            if (cell.get_fun(FUN_IN) == WALL) color = -1.0f;
+            else   color = 1 - cell.get_density();
+              
             pixelData[i * columns + j] = color;
         }
     }
-    cout << "Liczba czastek gazu: " << alive << endl;
 }
 
 int main() {
@@ -113,8 +106,6 @@ int main() {
 
     GLuint shaderProgram = glCreateProgram();
 
-
-
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
     glCompileShader(vertexShader);
@@ -154,11 +145,8 @@ int main() {
             logic_clock.restart();
             updateTextureData(simulation, pixelData, rows, columns);
 
-
-
             simulation.streaming();
-            //simulation.collision();
-
+            
             glBindTexture(GL_TEXTURE_2D, texture);
             glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, columns, rows, GL_RED, GL_FLOAT, pixelData.data());
         }
