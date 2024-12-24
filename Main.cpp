@@ -58,7 +58,7 @@ void updateTextureData(Simulation& simulation, vector<float>& pixelData, int row
             Cell cell = simulation.get_matrix().get_element(i, j);
             float color;
             if (cell.get_fun(FUN_IN) == WALL) color = -1.0f;
-            else   color = 1 - cell.get_density();
+            else color = 1 - cell.get_density();
               
             pixelData[i * columns + j] = color;
         }
@@ -146,6 +146,7 @@ int main() {
             updateTextureData(simulation, pixelData, rows, columns);
 
             simulation.streaming();
+            simulation.collision();
             
             glBindTexture(GL_TEXTURE_2D, texture);
             glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, columns, rows, GL_RED, GL_FLOAT, pixelData.data());

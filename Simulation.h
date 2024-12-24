@@ -9,5 +9,6 @@ public:
 
     Matrix& get_matrix();
 
+    void collision();
     void streaming();
 };

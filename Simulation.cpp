@@ -53,6 +53,15 @@ void Simulation::streaming() {
         }
     }
 
+    s = next_matrix;
+}
+
+
+void Simulation::collision() {
+    Matrix next_matrix = s;
+    int rows = s.get_rows_num();
+    int columns = s.get_columns_num();
+
     for (size_t i = 1; i < rows - 1; i++) {
         for (size_t j = 1; j < columns - 1; j++) {
             Cell& next_cell = next_matrix.get_element(i, j);
